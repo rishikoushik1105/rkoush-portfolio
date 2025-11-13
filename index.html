@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
- <head>
+
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rishi Koushik Sridharan | Portfolio</title>
@@ -10,621 +11,716 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-        theme: {
-            extend: {
-                colors: {
-                    'dark-bg': '#0d1117',
-                    'dark-card': '#161b22',
-                    'dark-border': '#30363d',
-                    'purple-accent': '#a855f7'
-                },
-                fontFamily: {
-                    'inter': ['Inter', 'sans-serif']
-                }
+      theme: {
+        extend: {
+          colors: {
+            'light-bg': '#F0DED0', // Light peach/beige background
+            'card-bg': '#D9BFB1', // Darker peach for cards
+            'border-color': '#E7E5D9', // Light grey/beige border
+            'text-primary': '#5E5946', // Dark olive for primary text
+            'text-secondary': '#5E5946', // Dark olive for readable body text
+            
+            'accent-primary': '#8C4D32', // Deep Terracotta
+            'accent-secondary': '#8C4D32', // Deep Terracotta
+            'accent-primary-hover': '#6E3C26', // Darker Terracotta
+            'accent-secondary-hover': '#6E3C26', // Darker Terracotta
+
+            'accent-light-peach': '#D9BFB1' // Lighter peach/pink
+          },
+          fontFamily: {
+            'inter': ['Inter', 'sans-serif']
+          },
+          animation: {
+            'fade-in': 'fadeIn 1.5s ease-out forwards',
+            'blob': 'blob 7s infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            blob: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+              '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' },
             }
+          }
         }
+      }
     }
   </script>
   <style>
     body {
-        box-sizing: border-box;
-        font-family: 'Inter', sans-serif;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      background-color: tailwind.theme.colors['light-bg'];
+      color: tailwind.theme.colors['text-primary'];
     }
-
-    .glow-purple {
-        box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
-    }
-
-    .timeline-line {
-        position: relative;
-    }
-
-    .timeline-line::before {
-        content: '';
-        position: absolute;
-        left: 20px;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background: linear-gradient(to bottom, #a855f7, #7c3aed);
-    }
-
-    .timeline-item {
-        position: relative;
-        margin-left: 50px;
-        margin-bottom: 2rem;
-    }
-
-
 
     .card-hover {
-        transition: all 0.3s ease;
+      transition: all 0.3s ease;
+      border: 1px solid tailwind.theme.colors['border-color'];
     }
 
     .card-hover:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(168, 85, 247, 0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
     }
 
+    .timeline-line {
+      position: relative;
+    }
+
+    .timeline-line::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #8a6a5d, #73574d);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-left: 50px;
+      margin-bottom: 2rem;
+    }
+    
+    /* NEW: Enhanced Nav Link Hover (Underline animation) */
     .nav-link {
-        transition: all 0.3s ease;
+      position: relative;
+      transition: color 0.3s ease;
+      color: tailwind.theme.colors['text-secondary'];
+      padding-bottom: 2px;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #8C4D32; /* Hardcoded accent for CSS referencing issue fallback */
+      background-color: tailwind.theme.colors['accent-primary'];
+      transition: width 0.3s ease;
     }
 
     .nav-link:hover {
-        color: #a855f7;
-        text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+      color: tailwind.theme.colors['accent-primary'];
     }
 
-    .contact-link {
-        transition: all 0.3s ease;
-    }
-
-    .contact-link:hover {
-        color: #a855f7;
-        transform: scale(1.05);
+    .nav-link:hover::after {
+      width: 100%;
     }
 
     .skill-card {
-        min-height: 200px;
+      min-height: 200px;
     }
 
-    .gradient-bg {
-        background: linear-gradient(135deg, #0d1117 0%, #0f1620 100%);
+    .animation-delay-2000 {
+      animation-delay: 2s;
+    }
+    
+    /* NEW: Resume Button Pop effect */
+    .btn-pop {
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+    }
+    .btn-pop:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
   </style>
-  <style>@view-transition { navigation: auto; }</style>
+  <style>
+    @view-transition {
+      navigation: auto;
+    }
+  </style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
- <body class="bg-dark-bg text-white font-inter">
-  <!-- Navigation -->
-  <nav class="sticky top-0 z-50 bg-dark-card/90 backdrop-blur-sm border-b border-dark-border">
-   <div class="max-w-6xl mx-auto px-6 py-4">
-    <div class="flex justify-center space-x-8">
-      <a href="#about" class="nav-link text-gray-300 hover:text-purple-accent">About</a>
-      <a href="#skills" class="nav-link text-gray-300 hover:text-purple-accent">Skills</a>
-      <a href="#experience" class="nav-link text-gray-300 hover:text-purple-accent">Experience</a>
-      <a href="#projects" class="nav-link text-gray-300 hover:text-purple-accent">Projects</a>
-      <a href="#education" class="nav-link text-gray-300 hover:text-purple-accent">Education</a>
-      <a href="#contact" class="nav-link text-gray-300 hover:text-purple-accent">Contact</a>
+</head>
+
+<body class="bg-light-bg text-text-primary font-inter">
+  
+  <nav class="sticky top-0 z-50 bg-card-bg/90 backdrop-blur-sm border-b border-border-color">
+    <div class="max-w-6xl mx-auto px-6 py-4">
+      <div class="flex flex-wrap items-center justify-center md:justify-between gap-4">
+        
+        <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 md:gap-x-8 text-sm md:text-base font-medium">
+          <a href="#about" class="nav-link">About</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#experience" class="nav-link">Experience</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#education" class="nav-link">Education</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+
+        <div class="hidden md:block">
+           <button class="bg-accent-primary text-white px-6 py-2 rounded-full font-medium btn-pop tracking-wide text-sm border border-transparent hover:bg-accent-primary-hover">
+             Resume
+           </button>
+        </div>
+        
+        <div class="block md:hidden w-full flex justify-center mt-2">
+           <button class="bg-accent-primary text-white px-6 py-2 rounded-full font-medium btn-pop tracking-wide text-sm border border-transparent hover:bg-accent-primary-hover w-full max-w-xs">
+             Resume
+           </button>
+        </div>
+
+      </div>
     </div>
-   </div>
   </nav>
 
-  <!-- Header/Hero -->
-  <header class="gradient-bg py-20">
-   <div class="max-w-6xl mx-auto px-6 text-center">
-    <h1 id="full-name" class="text-5xl font-bold mb-4 bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
-      Rishi Koushik Sridharan
-    </h1>
-    <p id="subtitle" class="text-xl text-gray-300 mb-8">
-      Data Scientist | ML Engineer | Analytics Professional
-    </p>
-
-    <!-- Contact Bar -->
-    <div class="flex justify-center space-x-8 text-sm">
-      <a id="email-link" href="mailto:rkoush@umd.edu" class="contact-link text-gray-400 hover:text-purple-accent">
-        <i class="fas fa-envelope mr-2"></i>Email
-      </a>
-      <a id="linkedin-link" href="https://linkedin.com/in/rishi-koushik-s" target="_blank" rel="noopener noreferrer" class="contact-link text-gray-400 hover:text-purple-accent">
-        <i class="fab fa-linkedin mr-2"></i>LinkedIn
-      </a>
-      <a id="github-link" href="https://github.com/rkoush" target="_blank" rel="noopener noreferrer" class="contact-link text-gray-400 hover:text-purple-accent">
-        <i class="fab fa-github mr-2"></i>GitHub
-      </a>
-      <a id="phone-link" href="tel:+12406016840" class="contact-link text-gray-400 hover:text-purple-accent">
-        <i class="fas fa-phone mr-2"></i>Phone
-      </a>
+  <header class="relative py-16 md:py-24 overflow-hidden" id="home">
+    
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+      <div class="absolute top-[-10%] right-[-5%] w-96 h-96 bg-card-bg rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+      <div class="absolute bottom-[-10%] left-[-5%] w-96 h-96 bg-accent-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
     </div>
-   </div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      
+      <div class="bg-card-bg/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-2xl border border-white/20 flex flex-col md:flex-row items-center justify-between gap-10">
+        
+        <div class="text-center md:text-left order-2 md:order-1 flex-1">
+          <h1 id="full-name" class="text-4xl md:text-6xl font-bold mb-2 text-text-primary tracking-tight">
+            Rishi Koushik Sridharan
+          </h1>
+          <p id="subtitle" class="text-lg md:text-xl text-text-secondary font-bold">
+            Data Scientist | ML Engineer | Analytics Professional
+          </p>
+          
+          <p class="text-accent-primary italic font-medium text-sm md:text-base mt-2 mb-8 opacity-0 animate-fade-in">
+            “Building scalable AI/ML systems so no one has to debug them at 2AM.”
+          </p>
+
+          <div class="flex justify-center md:justify-start flex-wrap gap-4 text-sm font-medium">
+            
+            <a id="email-link" href="mailto:rkoush@umd.edu" class="group flex items-center bg-light-bg/50 hover:bg-white border border-transparent hover:border-accent-primary/30 px-5 py-2.5 rounded-full transition-all duration-300 shadow-sm hover:shadow-md">
+              <div class="w-6 h-6 rounded-full bg-card-bg flex items-center justify-center mr-3 group-hover:bg-accent-primary group-hover:text-white transition-colors duration-300">
+                <i class="fas fa-envelope text-xs"></i>
+              </div>
+              <span class="text-text-primary group-hover:text-accent-primary transition-colors duration-300">Email</span>
+            </a>
+
+            <a id="linkedin-link" href="https://linkedin.com/in/rishi-koushik-s" target="_blank" rel="noopener noreferrer" class="group flex items-center bg-light-bg/50 hover:bg-white border border-transparent hover:border-accent-primary/30 px-5 py-2.5 rounded-full transition-all duration-300 shadow-sm hover:shadow-md">
+              <div class="w-6 h-6 rounded-full bg-card-bg flex items-center justify-center mr-3 group-hover:bg-accent-primary group-hover:text-white transition-colors duration-300">
+                <i class="fab fa-linkedin text-xs"></i>
+              </div>
+              <span class="text-text-primary group-hover:text-accent-primary transition-colors duration-300">LinkedIn</span>
+            </a>
+
+            <a id="github-link" href="https://github.com/rkoush" target="_blank" rel="noopener noreferrer" class="group flex items-center bg-light-bg/50 hover:bg-white border border-transparent hover:border-accent-primary/30 px-5 py-2.5 rounded-full transition-all duration-300 shadow-sm hover:shadow-md">
+              <div class="w-6 h-6 rounded-full bg-card-bg flex items-center justify-center mr-3 group-hover:bg-accent-primary group-hover:text-white transition-colors duration-300">
+                <i class="fab fa-github text-xs"></i>
+              </div>
+              <span class="text-text-primary group-hover:text-accent-primary transition-colors duration-300">GitHub</span>
+            </a>
+
+            <a id="phone-link" href="tel:+12406016840" class="group flex items-center bg-light-bg/50 hover:bg-white border border-transparent hover:border-accent-primary/30 px-5 py-2.5 rounded-full transition-all duration-300 shadow-sm hover:shadow-md">
+              <div class="w-6 h-6 rounded-full bg-card-bg flex items-center justify-center mr-3 group-hover:bg-accent-primary group-hover:text-white transition-colors duration-300">
+                <i class="fas fa-phone text-xs"></i>
+              </div>
+              <span class="text-text-primary group-hover:text-accent-primary transition-colors duration-300">Phone</span>
+            </a>
+
+          </div>
+        </div>
+
+        <div class="flex-shrink-0 order-1 md:order-2 relative group">
+          <div class="absolute -inset-2 bg-gradient-to-br from-accent-primary/20 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"></div>
+          <img 
+            src="https://placehold.co/150x150/E7E5D9/5E5946?text=Rishi" 
+            alt="Rishi Koushik Sridharan" 
+            class="relative w-40 h-40 md:w-52 md:h-52 rounded-full border-4 border-light-bg shadow-xl object-cover transform transition-transform duration-500 hover:scale-105"
+            onerror="this.src='https://placehold.co/150x150/E7E5D9/5E5946?text=Rishi'; this.onerror=null;"
+          >
+        </div>
+
+      </div>
+    </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-6 py-12 space-y-16">
+  <main class="max-w-6xl mx-auto px-6 py-16 space-y-20">
 
-   <!-- About Me -->
-<section id="about" class="scroll-mt-20">
-  <h2 class="text-3xl font-bold mb-8 text-center">About Me</h2>
+    <section id="about" class="scroll-mt-20">
+      <div class="flex flex-col items-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary relative z-10">About Me</h2>
+        <div class="w-20 h-1.5 bg-accent-primary rounded-full mt-3 opacity-80"></div>
+      </div>
 
-  <div id="about-container" class="relative overflow-hidden">
+      <div id="about-container" class="relative overflow-hidden rounded-xl">
 
-    <!-- SLIDER WRAPPER -->
-    <div id="about-slider" class="flex transition-transform duration-500" style="width: 200%;">
+        <div id="about-slider" class="flex transition-transform duration-500 ease-in-out" style="width: 200%;">
 
-      <!-- PROFESSIONAL SECTION -->
-      <div class="w-full bg-dark-card rounded-xl p-8 border border-dark-border card-hover mr-4">
-        <div class="flex items-center justify-between mb-6">
-          <div class="flex items-center">
-            <i class="fas fa-user-tie text-purple-accent text-2xl mr-4"></i>
-            <h3 class="text-xl font-semibold">Professional</h3>
+          <div class="w-1/2 px-2">
+            <div class="bg-card-bg rounded-xl p-8 card-hover h-full flex flex-col">
+              <div class="flex items-center justify-between mb-6 border-b border-border-color pb-4">
+                <div class="flex items-center">
+                  <div class="p-2 bg-light-bg rounded-full mr-4">
+                    <i class="fas fa-user-tie text-accent-primary text-2xl"></i>
+                  </div>
+                  <h3 class="text-xl font-bold text-text-primary">Professional</h3>
+                </div>
+
+                <button id="to-personal" class="group flex items-center gap-2 text-accent-primary hover:text-accent-primary-hover transition-all">
+                  <span class="text-sm font-bold uppercase tracking-wide hidden sm:block group-hover:underline">Personal Side</span>
+                  <i class="fa-solid fa-circle-arrow-right text-3xl transform group-hover:scale-110 transition-transform duration-300"></i>
+                </button>
+              </div>
+
+              <p id="professional-bio" class="text-text-secondary leading-relaxed text-lg">
+                Data Scientist with <b>3+ years</b> of experience scaling ML and analytics systems for Fortune 100 clients. My work in forecasting and anomaly detection has generated over <b>$3M in savings</b> and significantly improved operational efficiency. I am currently deepening my expertise in MLOps, LLMs, and cloud workflows through my M.S. in Data Science at the University of Maryland (<b>GPA 3.95</b>).
+              </p>
+            </div>
           </div>
 
-          <!-- RIGHT ARROW -->
-          <button id="to-personal"
-                  class="text-purple-accent hover:text-purple-300 transition text-3xl">
-            <i class="fa-solid fa-circle-arrow-right"></i>
-          </button>
+          <div class="w-1/2 px-2">
+            <div class="bg-card-bg rounded-xl p-8 card-hover h-full flex flex-col">
+              <div class="flex items-center justify-between mb-6 border-b border-border-color pb-4">
+                <button id="to-professional" class="group flex items-center gap-2 text-accent-primary hover:text-accent-primary-hover transition-all">
+                  <i class="fa-solid fa-circle-arrow-left text-3xl transform group-hover:scale-110 transition-transform duration-300"></i>
+                  <span class="text-sm font-bold uppercase tracking-wide hidden sm:block group-hover:underline">Back to Professional</span>
+                </button>
+
+                <div class="flex items-center">
+                  <h3 class="text-xl font-bold text-text-primary mr-4">Personal</h3>
+                   <div class="p-2 bg-light-bg rounded-full">
+                    <i class="fas fa-heart text-accent-primary text-2xl"></i>
+                  </div>
+                </div>
+              </div>
+
+              <p id="personal-bio" class="text-text-secondary leading-relaxed text-lg">
+                Outside of data, I'm an avid explorer, from hiking scenic trails to enjoying new cultures and cuisines. I value community, problem-solving, and a good story—whether that's in a video game, in my volunteer work, or in connecting with new people.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const slider = document.getElementById("about-slider");
+      const toPersonal = document.getElementById("to-personal");
+      const toProfessional = document.getElementById("to-professional");
+
+      toPersonal.addEventListener("click", () => {
+        slider.style.transform = "translateX(-50%)";
+      });
+
+      toProfessional.addEventListener("click", () => {
+        slider.style.transform = "translateX(0%)";
+      });
+    </script>
+
+
+    <section id="experience" class="scroll-mt-20">
+      <div class="flex flex-col items-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary relative z-10">Professional Experience</h2>
+        <div class="w-20 h-1.5 bg-accent-primary rounded-full mt-3 opacity-80"></div>
+      </div>
+
+      <div class="timeline-line">
+
+        <div class="timeline-item">
+          <div class="bg-card-bg rounded-xl p-8 card-hover">
+            <div class="flex flex-col sm:flex-row sm:items-center mb-4">
+              <i class="fas fa-store text-accent-primary text-2xl mr-4 mb-3 sm:mb-0"></i>
+              <div>
+                <h3 class="text-xl font-bold">Lead Data Scientist</h3>
+                <p class="text-accent-secondary font-semibold">Mu Sigma – Nike (Replenishment Optimization)</p>
+                <p class="text-text-secondary text-sm italic">Apr 2023 – Aug 2024 | Bangalore, India</p>
+              </div>
+            </div>
+            <ul class="text-text-secondary space-y-2 text-sm list-disc pl-5">
+              <li>Optimized inventory replenishment across 6 warehouses and 285 stores, generating <b>$3.2M EBIT savings</b>.</li>
+              <li>Owned and improved forecasting models (Moving Average, Time Series, Regression) on Sagemaker, achieving <b>25% better MAPE</b> on replenishment signals.</li>
+              <li>Enabled <b>~80% improvement</b> in availability for cold-start and seasonal products by designing disaggregated demand estimation methods.</li>
+              <li>Led development of a Store Replenishment program and automated STO recommendations via Airflow, improving fulfillment by <b>35%</b>.</li>
+              <li>Built Tableau dashboards to monitor KPIs and inventory health, helping move slow-moving products to clearance and increasing fulfillment by <b>10%</b>.</li>
+            </ul>
+          </div>
         </div>
 
-        <p id="professional-bio" class="text-gray-300 leading-relaxed">
-          I am a Data Scientist with 3+ years of experience designing and scaling ML and analytics
-          systems for Fortune 100 clients across supply chain, telecom, and strategy. I’ve built
-          forecasting platforms that unlocked over $3M in annual savings, engineered anomaly-detection
-          systems that reduced false positives by 30%, and designed end-to-end analytical solutions that
-          improved operational efficiency. I’m currently pursuing my M.S. in Data Science at the
-          University of Maryland (GPA 3.95), specializing in statistical modeling, NLP/LLMs, MLOps,
-          and cloud-based data workflows.
+        <div class="timeline-item">
+          <div class="bg-card-bg rounded-xl p-8 card-hover">
+            <div class="flex flex-col sm:flex-row sm:items-center mb-4">
+              <i class="fas fa-flask text-accent-primary text-2xl mr-4 mb-3 sm:mb-0"></i>
+              <div>
+                <h3 class="text-xl font-bold">Data Scientist</h3>
+                <p class="text-accent-secondary font-semibold">Mu Sigma – Ecolab (Business Development & Strategy)</p>
+                <p class="text-text-secondary text-sm italic">Nov 2022 – Apr 2023 | Bangalore, India</p>
+              </div>
+            </div>
+            <ul class="text-text-secondary space-y-2 text-sm list-disc pl-5">
+              <li>Performed pre/post statistical analysis on Health Department violations, demonstrating <b>~26% reduction</b> after Ecolab solution adoption.</li>
+              <li>Led sentiment analysis on <b>10K+ Yelp reviews</b> across segments, quantifying perception shifts and surfacing key product improvement opportunities.</li>
+              <li>Translated Python and Azure-based analytics notebooks into strategic narratives for BD teams, supporting targeted campaigns to <b>20+ prospects</b>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="bg-card-bg rounded-xl p-8 card-hover">
+            <div class="flex flex-col sm:flex-row sm:items-center mb-4">
+              <i class="fas fa-network-wired text-accent-primary text-2xl mr-4 mb-3 sm:mb-0"></i>
+              <div>
+                <h3 class="text-xl font-bold">Data Scientist</h3>
+                <p class="text-accent-secondary font-semibold">Mu Sigma – Charter Communications (Network Optimization)</p>
+                <p class="text-text-secondary text-sm italic">Jul 2021 – Oct 2022 | Bangalore, India</p>
+              </div>
+            </div>
+            <ul class="text-text-secondary space-y-2 text-sm list-disc pl-5">
+              <li>Engineered analytical solutions using 8+ datasets (speed tests, utilization, capacity) to monitor network events for <b>60M+ users</b> in near real-time.</li>
+              <li>Reduced false-positive irregular events by <b>30%</b> using state-transition logic and ML-driven detection pipelines on Snowflake/Snowpark.</li>
+              <li>Developed outage detection logic based on modem event data, later adopted by multiple connectivity teams.</li>
+              <li>Achieved <b>87% accuracy</b> in identifying RF impairments through an ensemble of XGBoost and FastAI tabular models with spectral features.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="skills" class="scroll-mt-20">
+      <div class="flex flex-col items-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary relative z-10">Skills</h2>
+        <div class="w-20 h-1.5 bg-accent-primary rounded-full mt-3 opacity-80"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="bg-card-bg rounded-xl p-6 card-hover skill-card">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-brain text-accent-primary text-2xl mr-3"></i>
+            <h3 class="text-lg font-bold">Core Data Science</h3>
+          </div>
+          <ul class="text-text-secondary space-y-2 text-sm list-disc pl-5">
+            <li>Python, Pandas, NumPy, R</li>
+            <li>Regression & Classification</li>
+            <li>Clustering & Feature Engineering</li>
+            <li>Time Series & Forecasting</li>
+            <li>A/B Testing & Pre/Post Analysis</li>
+          </ul>
+        </div>
+
+        <div class="bg-card-bg rounded-xl p-6 card-hover skill-card">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-cloud text-accent-primary text-2xl mr-3"></i>
+            <h3 class="text-lg font-bold">MLOps &amp; Cloud</h3>
+          </div>
+          <ul class="text-text-secondary space-y-2 text-sm list-disc pl-5">
+            <li>AWS & Amazon Sagemaker</li>
+            <li>Docker & Kubernetes</li>
+            <li>Airflow & Automation</li>
+            <li>S3 & Cloud Storage</li>
+            <li>Model Lifecycle & Monitoring</li>
+          </ul>
+        </div>
+
+        <div class="bg-card-bg rounded-xl p-6 card-hover skill-card">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-database text-accent-primary text-2xl mr-3"></i>
+            <h3 class="text-lg font-bold">Data Engineering &amp; Databases</h3>
+          </div>
+          <ul class="text-text-secondary space-y-2 text-sm list-disc pl-5">
+            <li>Snowflake, SQL, PostgreSQL, MySQL</li>
+            <li>NoSQL & HiveQL</li>
+            <li>ETL / ELT Pipelines</li>
+            <li>Data Modeling & Warehousing</li>
+            <li>Large-Scale Data Integration</li>
+          </ul>
+        </div>
+
+        <div class="bg-card-bg rounded-xl p-6 card-hover skill-card">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-chart-line text-accent-primary text-2xl mr-3"></i>
+            <h3 class="text-lg font-bold">Visualization</h3>
+          </div>
+          <ul class="text-text-secondary space-y-2 text-sm list-disc pl-5">
+            <li>Tableau & ThoughtSpot</li>
+            <li>Power BI</li>
+            <li>Matplotlib & Seaborn</li>
+            <li>Dashboard Design</li>
+            <li>Storytelling with Data</li>
+          </ul>
+        </div>
+
+        <div class="bg-card-bg rounded-xl p-6 card-hover skill-card">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-language text-accent-primary text-2xl mr-3"></i>
+            <h3 class="text-lg font-bold">NLP &amp; LLMs</h3>
+          </div>
+          <ul class="text-text-secondary space-y-2 text-sm list-disc pl-5">
+            <li>Transformers, BERT</li>
+            <li>Text Processing & NLTK</li>
+            <li>RAG Systems & LangChain</li>
+            <li>Vector DBs & FAISS</li>
+            <li>Question Answering & Search</li>
+          </ul>
+        </div>
+
+        <div class="bg-card-bg rounded-xl p-6 card-hover skill-card">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-people-group text-accent-primary text-2xl mr-3"></i>
+            <h3 class="text-lg font-bold">Soft Skills &amp; Collaboration</h3>
+          </div>
+          <ul class="text-text-secondary space-y-2 text-sm list-disc pl-5">
+            <li>Analytical Problem Solving</li>
+            <li>Communication & Storytelling</li>
+            <li>Cross-Functional Collaboration</li>
+            <li>Client Interaction & Stakeholder Management</li>
+            <li>Mentorship & Agile Delivery</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="scroll-mt-20">
+      <div class="flex flex-col items-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary relative z-10">Featured Projects</h2>
+        <div class="w-20 h-1.5 bg-accent-primary rounded-full mt-3 opacity-80"></div>
+      </div>
+
+      <div class="space-y-6">
+
+        <div class="bg-card-bg rounded-xl p-8 card-hover">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-4">
+            <div class="flex items-center">
+              <i class="fas fa-users-slash text-accent-primary text-2xl mr-4"></i>
+              <h3 class="text-xl font-bold">B2B Customer Churn Prediction</h3>
+            </div>
+            <a href="https" target="_blank" rel="noopener noreferrer" class="bg-transparent border border-accent-primary text-accent-primary hover:bg-accent-primary hover:text-white px-4 py-2 rounded-lg transition-colors text-sm flex-shrink-0">
+              <i class="fab fa-github mr-2"></i>View Project
+            </a>
+          </div>
+          <p class="text-text-secondary text-sm">
+            End-to-end ML pipeline analyzing churn behavior for B2B clients, including EDA, class imbalance handling, feature engineering, and model benchmarking with <i>interpretable insights</i> for retention strategy.
+          </p>
+        </div>
+
+        <div class="bg-card-bg rounded-xl p-8 card-hover">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-4">
+            <div class="flex items-center">
+              <i class="fas fa-layer-group text-accent-primary text-2xl mr-4"></i>
+              <h3 class="text-xl font-bold">Customer Segmentation using Clustering</h3>
+            </div>
+            <a href="https" target="_blank" rel="noopener noreferrer" class="bg-transparent border border-accent-primary text-accent-primary hover:bg-accent-primary hover:text-white px-4 py-2 rounded-lg transition-colors text-sm flex-shrink-0">
+              <i class="fab fa-github mr-2"></i>View Project
+            </a>
+          </div>
+          <p class="text-text-secondary text-sm">
+            Built customer segments using <b>KMeans and PCA</b> on behavioral and demographic features, generating actionable personas and marketing strategies for targeting and personalization.
+          </p>
+        </div>
+
+        <div class="bg-card-bg rounded-xl p-8 card-hover">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-4">
+            <div class="flex items-center">
+              <i class="fas fa-flag-checkered text-accent-primary text-2xl mr-4"></i>
+              <h3 class="text-xl font-bold">F1 Live Commentary Generator (Bitcamp Hackathon)</h3>
+            </div>
+            <a href="https" target="_blank" rel="noopener noreferrer" class="bg-transparent border border-accent-primary text-accent-primary hover:bg-accent-primary hover:text-white px-4 py-2 rounded-lg transition-colors text-sm flex-shrink-0">
+              <i class="fab fa-github mr-2"></i>View Project
+            </a>
+          </div>
+          <p class="text-text-secondary text-sm">
+            Built an automated commentary engine for Formula 1 races using <b>OpenF1 telemetry data</b> and a Gemini-based wrapper to generate real-time, human-like race commentary from live signals.
+          </p>
+        </div>
+
+        <div class="bg-card-bg rounded-xl p-8 card-hover">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-4">
+            <div class="flex items-center">
+              <i class="fas fa-city text-accent-primary text-2xl mr-4"></i>
+              <h3 class="text-xl font-bold">LA City Crime Analysis</h3>
+            </div>
+            <a href="https" target="_blank" rel="noopener noreferrer" class="bg-transparent border border-accent-primary text-accent-primary hover:bg-accent-primary hover:text-white px-4 py-2 rounded-lg transition-colors text-sm flex-shrink-0">
+              <i class="fas fa-globe mr-2"></i>View Dashboard
+            </a>
+          </div>
+          <p class="text-text-secondary text-sm">
+            Full-stack analysis of LA crime data: victim demographics, temporal trends, geographic hotspots, and offense breakdowns, published as an <i>interactive GitHub Pages dashboard</i>.
+          </p>
+        </div>
+
+        <div class="bg-card-bg rounded-xl p-8 card-hover">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-4">
+            <div class="flex items-center">
+              <i class="fas fa-file-signature text-accent-primary text-2xl mr-4"></i>
+              <h3 class="text-xl font-bold">Smart Contract Payroll System</h3>
+            </div>
+            <a href="https" target="_blank" rel="noopener noreferrer" class="bg-transparent border border-accent-primary text-accent-primary hover:bg-accent-primary hover:text-white px-4 py-2 rounded-lg transition-colors text-sm flex-shrink-0">
+              <i class="fab fa-github mr-2"></i>View Project
+            </a>
+          </div>
+          <p class="text-text-secondary text-sm">
+            Designed a blockchain-backed payroll system using <b>smart contracts</b> to ensure immutability, transparent audit trails, and secure compensation workflows.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="education" class="scroll-mt-20">
+      <div class="flex flex-col items-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary relative z-10">Education</h2>
+        <div class="w-20 h-1.5 bg-accent-primary rounded-full mt-3 opacity-80"></div>
+      </div>
+
+      <div class="bg-card-bg rounded-xl p-8 card-hover mb-6">
+        <div class="flex flex-col sm:flex-row sm:items-center mb-4">
+          <i class="fas fa-graduation-cap text-accent-primary text-2xl mr-4 mb-3 sm:mb-0"></i>
+          <div>
+            <h3 class="text-xl font-bold">Master of Science in Data Science</h3>
+            <p class="text-accent-secondary font-semibold">University of Maryland, College Park</p>
+            <p class="text-text-secondary text-sm italic">Aug 2024 – May 2026 | GPA: 3.95/4.0</p>
+          </div>
+        </div>
+        <p class="text-text-secondary text-sm">
+          Graduate coursework focused on statistical modeling, machine learning, big data, NLP/LLMs, and data engineering, with applied projects in forecasting, graph analytics, and retrieval-augmented systems.
         </p>
       </div>
 
-      <!-- PERSONAL SECTION -->
-      <div class="w-full bg-dark-card rounded-xl p-8 border border-dark-border card-hover ml-4">
-        <div class="flex items-center justify-between mb-6">
-          <!-- LEFT ARROW -->
-          <button id="to-professional"
-                  class="text-purple-accent hover:text-purple-300 transition text-3xl">
-            <i class="fa-solid fa-circle-arrow-left"></i>
-          </button>
-
-          <div class="flex items-center">
-            <i class="fas fa-heart text-purple-accent text-2xl mr-4"></i>
-            <h3 class="text-xl font-semibold">Personal</h3>
+      <div class="bg-card-bg rounded-xl p-8 card-hover">
+        <div class="flex flex-col sm:flex-row sm:items-center mb-4">
+          <i class="fas fa-university text-accent-primary text-2xl mr-4 mb-3 sm:mb-0"></i>
+          <div>
+            <h3 class="text-xl font-bold">Bachelor of Technology in Software Engineering</h3>
+            <p class="text-accent-secondary font-semibold">SRM Institute of Science and Technology</p>
+            <p class="text-text-secondary text-sm italic">Jul 2017 – Jun 2021</p>
           </div>
         </div>
-
-        <p id="personal-bio" class="text-gray-300 leading-relaxed">
-          Outside of work, I love exploring new places- hiking scenic trails, relaxing on beaches, and
-          immersing myself in different cultures and cuisines. I value community and enjoy volunteer
-          work, especially when it involves helping people learn new skills or supporting local
-          initiatives. I’m driven by a strong competitive mindset, whether in academics, sports, or
-          creative problem-solving. I’m also a big fan of video games- story-driven titles like Red Dead
-          Redemption 2 and Assassin’s Creed, as well as competitive multiplayer games including
-          Fortnite and Valorant.
+        <p class="text-text-secondary text-sm">
+          Built foundations in software engineering, algorithms, and systems design. Won a university-wide <b>gold medal</b> at Research Day (2020) for a paper on automation in metal and mineral extraction using image processing.
         </p>
       </div>
+    </section>
 
-    </div>
-  </div>
-</section>
+    <section id="contact" class="scroll-mt-20">
+      <div class="flex flex-col items-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary relative z-10">Get In Touch</h2>
+        <div class="w-20 h-1.5 bg-accent-primary rounded-full mt-3 opacity-80"></div>
+      </div>
 
-<!-- Slider Script -->
-<script>
-  const slider = document.getElementById("about-slider");
-  const toPersonal = document.getElementById("to-personal");
-  const toProfessional = document.getElementById("to-professional");
-
-  toPersonal.addEventListener("click", () => {
-    slider.style.transform = "translateX(-50%)";
-  });
-
-  toProfessional.addEventListener("click", () => {
-    slider.style.transform = "translateX(0%)";
-  });
-</script>
-
-
-   <!-- Professional Experience -->
-   <section id="experience" class="scroll-mt-20">
-    <h2 class="text-3xl font-bold mb-8 text-center">Professional Experience</h2>
-    <div class="timeline-line">
-
-     <!-- Nike / Mu Sigma -->
-     <div class="timeline-item">
-      <div class="bg-dark-card rounded-xl p-8 border border-dark-border card-hover">
-       <div class="flex items-center mb-4">
-        <i class="fas fa-store text-purple-accent text-2xl mr-4"></i>
-        <div>
-         <h3 class="text-xl font-semibold">Lead Data Scientist</h3>
-         <p class="text-purple-accent font-medium">Mu Sigma – Nike (Replenishment Optimization)</p>
-         <p class="text-gray-400 text-sm">Apr 2023 – Aug 2024 | Bangalore, India</p>
+      <div class="bg-card-bg rounded-xl p-8 card-hover text-center">
+        <p class="text-text-secondary mb-6 max-w-2xl mx-auto">
+          I’m always happy to chat about data science, ML systems, analytics strategy, or potential collaborations.
+          Feel free to reach out if you’d like to work together or just connect.
+        </p>
+        <div class="text-text-secondary mb-8 leading-relaxed">
+          <a href="mailto:rkoush@umd.edu" class="text-accent-primary font-bold hover:underline">rkoush@umd.edu</a>
+          <span class="mx-2 text-border-color">|</span>
+          +1 (240) 601-6840
+          <span class="mx-2 text-border-color">|</span>
+          <a href="https://linkedin.com/in/rishi-koushik-s" target="_blank" rel="noopener noreferrer" class="text-accent-primary font-bold hover:underline">LinkedIn</a>
         </div>
-       </div>
-       <ul class="text-gray-300 space-y-2 text-sm">
-        <li>• Optimized inventory replenishment across 6 warehouses and 285 stores, generating $3.2M EBIT savings.</li>
-        <li>• Owned and improved forecasting models (Moving Average, Time Series, Regression) on Sagemaker, achieving 25% better MAPE on replenishment signals.</li>
-        <li>• Enabled ~80% improvement in availability for cold-start and seasonal products by designing disaggregated demand estimation methods.</li>
-        <li>• Led development of a Store Replenishment program and automated STO recommendations via Airflow, improving fulfillment by 35%.</li>
-        <li>• Built Tableau dashboards to monitor KPIs and inventory health, helping move slow-moving products to clearance and increasing fulfillment by 10%.</li>
-       </ul>
-      </div>
-     </div>
-
-     <!-- Ecolab / Mu Sigma -->
-     <div class="timeline-item">
-      <div class="bg-dark-card rounded-xl p-8 border border-dark-border card-hover">
-       <div class="flex items-center mb-4">
-        <i class="fas fa-flask text-purple-accent text-2xl mr-4"></i>
-        <div>
-         <h3 class="text-xl font-semibold">Data Scientist</h3>
-         <p class="text-purple-accent font-medium">Mu Sigma – Ecolab (Business Development & Strategy)</p>
-         <p class="text-gray-400 text-sm">Nov 2022 – Apr 2023 | Bangalore, India</p>
+        
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a id="contact-email" href="mailto:rkoush@umd.edu" class="bg-transparent border border-accent-primary text-accent-primary hover:bg-accent-primary hover:text-white px-6 py-3 rounded-lg transition-colors font-medium">
+            <i class="fas fa-envelope mr-2"></i>Send Email
+          </a>
+          <a id="contact-linkedin" href="https://linkedin.com/in/rishi-koushik-s" target="_blank" rel="noopener noreferrer" class="bg-transparent border border-accent-primary text-accent-primary hover:bg-accent-primary hover:text-white px-6 py-3 rounded-lg transition-colors font-medium">
+            <i class="fab fa-linkedin mr-2"></i>Connect on LinkedIn
+          </a>
         </div>
-       </div>
-       <ul class="text-gray-300 space-y-2 text-sm">
-        <li>• Performed pre/post statistical analysis on Health Department violations, demonstrating ~26% reduction after Ecolab solution adoption.</li>
-        <li>• Led sentiment analysis on 10K+ Yelp reviews across segments, quantifying perception shifts and surfacing key product improvement opportunities.</li>
-        <li>• Translated Python and Azure-based analytics notebooks into strategic narratives for BD teams, supporting targeted campaigns to 20+ prospects.</li>
-       </ul>
       </div>
-     </div>
-
-     <!-- Charter / Mu Sigma -->
-     <div class="timeline-item">
-      <div class="bg-dark-card rounded-xl p-8 border border-dark-border card-hover">
-       <div class="flex items-center mb-4">
-        <i class="fas fa-network-wired text-purple-accent text-2xl mr-4"></i>
-        <div>
-         <h3 class="text-xl font-semibold">Data Scientist</h3>
-         <p class="text-purple-accent font-medium">Mu Sigma – Charter Communications (Network Optimization)</p>
-         <p class="text-gray-400 text-sm">Jul 2021 – Oct 2022 | Bangalore, India</p>
-        </div>
-       </div>
-       <ul class="text-gray-300 space-y-2 text-sm">
-        <li>• Engineered analytical solutions using 8+ datasets (speed tests, utilization, capacity) to monitor network events for 60M+ users in near real-time.</li>
-        <li>• Reduced false-positive irregular events by 30% using state-transition logic and ML-driven detection pipelines on Snowflake/Snowpark.</li>
-        <li>• Developed outage detection logic based on modem event data, later adopted by multiple connectivity teams.</li>
-        <li>• Achieved 87% accuracy in identifying RF impairments through an ensemble of XGBoost and FastAI tabular models with spectral features.</li>
-       </ul>
-      </div>
-     </div>
-
-    </div>
-   </section>
-
-   <!-- Skills -->
-   <section id="skills" class="scroll-mt-20">
-    <h2 class="text-3xl font-bold mb-8 text-center">Skills</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-     <!-- Core Data Science -->
-     <div class="bg-dark-card rounded-xl p-6 border border-dark-border card-hover skill-card">
-      <div class="flex items-center mb-4">
-        <i class="fas fa-brain text-purple-accent text-2xl mr-3"></i>
-        <h3 class="text-lg font-semibold">Core Data Science</h3>
-      </div>
-      <ul class="text-gray-300 space-y-2 text-sm">
-       <li>• Python, Pandas, NumPy, R</li>
-       <li>• Regression & Classification</li>
-       <li>• Clustering & Feature Engineering</li>
-       <li>• Time Series & Forecasting</li>
-       <li>• A/B Testing & Pre/Post Analysis</li>
-      </ul>
-     </div>
-
-     <!-- MLOps & Cloud -->
-     <div class="bg-dark-card rounded-xl p-6 border border-dark-border card-hover skill-card">
-      <div class="flex items-center mb-4">
-        <i class="fas fa-cloud text-purple-accent text-2xl mr-3"></i>
-        <h3 class="text-lg font-semibold">MLOps &amp; Cloud</h3>
-      </div>
-      <ul class="text-gray-300 space-y-2 text-sm">
-       <li>• AWS & Amazon Sagemaker</li>
-       <li>• Docker & Kubernetes</li>
-       <li>• Airflow & Automation</li>
-       <li>• S3 & Cloud Storage</li>
-       <li>• Model Lifecycle & Monitoring</li>
-      </ul>
-     </div>
-
-     <!-- Data Engineering -->
-     <div class="bg-dark-card rounded-xl p-6 border border-dark-border card-hover skill-card">
-      <div class="flex items-center mb-4">
-        <i class="fas fa-database text-purple-accent text-2xl mr-3"></i>
-        <h3 class="text-lg font-semibold">Data Engineering &amp; Databases</h3>
-      </div>
-      <ul class="text-gray-300 space-y-2 text-sm">
-       <li>• Snowflake, SQL, PostgreSQL, MySQL</li>
-       <li>• NoSQL & HiveQL</li>
-       <li>• ETL / ELT Pipelines</li>
-       <li>• Data Modeling & Warehousing</li>
-       <li>• Large-Scale Data Integration</li>
-      </ul>
-     </div>
-
-     <!-- Visualization -->
-     <div class="bg-dark-card rounded-xl p-6 border border-dark-border card-hover skill-card">
-      <div class="flex items-center mb-4">
-        <i class="fas fa-chart-line text-purple-accent text-2xl mr-3"></i>
-        <h3 class="text-lg font-semibold">Visualization</h3>
-      </div>
-      <ul class="text-gray-300 space-y-2 text-sm">
-       <li>• Tableau & ThoughtSpot</li>
-       <li>• Power BI</li>
-       <li>• Matplotlib & Seaborn</li>
-       <li>• Dashboard Design</li>
-       <li>• Storytelling with Data</li>
-      </ul>
-     </div>
-
-     <!-- NLP & LLMs -->
-     <div class="bg-dark-card rounded-xl p-6 border border-dark-border card-hover skill-card">
-      <div class="flex items-center mb-4">
-        <i class="fas fa-language text-purple-accent text-2xl mr-3"></i>
-        <h3 class="text-lg font-semibold">NLP &amp; LLMs</h3>
-      </div>
-      <ul class="text-gray-300 space-y-2 text-sm">
-       <li>• Transformers, BERT</li>
-       <li>• Text Processing & NLTK</li>
-       <li>• RAG Systems & LangChain</li>
-       <li>• Vector DBs & FAISS</li>
-       <li>• Question Answering & Search</li>
-      </ul>
-     </div>
-
-     <!-- Soft Skills -->
-     <div class="bg-dark-card rounded-xl p-6 border border-dark-border card-hover skill-card">
-      <div class="flex items-center mb-4">
-        <i class="fas fa-people-group text-purple-accent text-2xl mr-3"></i>
-        <h3 class="text-lg font-semibold">Soft Skills &amp; Collaboration</h3>
-      </div>
-      <ul class="text-gray-300 space-y-2 text-sm">
-       <li>• Analytical Problem Solving</li>
-       <li>• Communication & Storytelling</li>
-       <li>• Cross-Functional Collaboration</li>
-       <li>• Client Interaction & Stakeholder Management</li>
-       <li>• Mentorship & Agile Delivery</li>
-      </ul>
-     </div>
-    </div>
-   </section>
-
-   <!-- Projects -->
-   <section id="projects" class="scroll-mt-20">
-    <h2 class="text-3xl font-bold mb-8 text-center">Featured Projects</h2>
-    <div class="space-y-6">
-
-     <!-- B2B Churn -->
-     <div class="bg-dark-card rounded-xl p-8 border border-dark-border card-hover">
-      <div class="flex items-center justify-between mb-4">
-       <div class="flex items-center">
-        <i class="fas fa-users-slash text-purple-accent text-2xl mr-4"></i>
-        <h3 class="text-xl font-semibold">B2B Customer Churn Prediction</h3>
-       </div>
-       <a href="https://github.com/rkoush/Personal_Projects/tree/main/B2B%20Customer%20Churn" target="_blank" rel="noopener noreferrer" class="bg-purple-accent hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition-colors">
-        <i class="fab fa-github mr-2"></i>View Project
-       </a>
-      </div>
-      <p class="text-gray-300 text-sm">
-        End-to-end ML pipeline analyzing churn behavior for B2B clients, including EDA, class imbalance handling, feature engineering, and model benchmarking with interpretable insights for retention strategy.
-      </p>
-     </div>
-
-     <!-- Customer Segmentation -->
-     <div class="bg-dark-card rounded-xl p-8 border border-dark-border card-hover">
-      <div class="flex items-center justify-between mb-4">
-       <div class="flex items-center">
-        <i class="fas fa-layer-group text-purple-accent text-2xl mr-4"></i>
-        <h3 class="text-xl font-semibold">Customer Segmentation using Clustering</h3>
-       </div>
-       <a href="https://github.com/rkoush/Personal_Projects/tree/main/Customer%20Segmentation" target="_blank" rel="noopener noreferrer" class="bg-purple-accent hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition-colors">
-        <i class="fab fa-github mr-2"></i>View Project
-       </a>
-      </div>
-      <p class="text-gray-300 text-sm">
-        Built customer segments using KMeans and PCA on behavioral and demographic features, generating actionable personas and marketing strategies for targeting and personalization.
-      </p>
-     </div>
-
-     <!-- F1 Commentary -->
-     <div class="bg-dark-card rounded-xl p-8 border border-dark-border card-hover">
-      <div class="flex items-center justify-between mb-4">
-       <div class="flex items-center">
-        <i class="fas fa-flag-checkered text-purple-accent text-2xl mr-4"></i>
-        <h3 class="text-xl font-semibold">F1 Live Commentary Generator (Bitcamp Hackathon)</h3>
-       </div>
-       <a href="https://github.com/rkoush/f1-commentary" target="_blank" rel="noopener noreferrer" class="bg-purple-accent hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition-colors">
-        <i class="fab fa-github mr-2"></i>View Project
-       </a>
-      </div>
-      <p class="text-gray-300 text-sm">
-        Built an automated commentary engine for Formula 1 races using OpenF1 telemetry data and a Gemini-based wrapper to generate real-time, human-like race commentary from live signals.
-      </p>
-     </div>
-
-     <!-- LA Crime Analysis -->
-     <div class="bg-dark-card rounded-xl p-8 border border-dark-border card-hover">
-      <div class="flex items-center justify-between mb-4">
-       <div class="flex items-center">
-        <i class="fas fa-city text-purple-accent text-2xl mr-4"></i>
-        <h3 class="text-xl font-semibold">LA City Crime Analysis</h3>
-       </div>
-       <a href="https://rkoush.github.io/" target="_blank" rel="noopener noreferrer" class="bg-purple-accent hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition-colors">
-        <i class="fas fa-globe mr-2"></i>View Dashboard
-       </a>
-      </div>
-      <p class="text-gray-300 text-sm">
-        Full-stack analysis of LA crime data: victim demographics, temporal trends, geographic hotspots, and offense breakdowns, published as an interactive GitHub Pages dashboard.
-      </p>
-     </div>
-
-     <!-- Smart Contract Payroll -->
-     <div class="bg-dark-card rounded-xl p-8 border border-dark-border card-hover">
-      <div class="flex items-center justify-between mb-4">
-       <div class="flex items-center">
-        <i class="fas fa-file-signature text-purple-accent text-2xl mr-4"></i>
-        <h3 class="text-xl font-semibold">Smart Contract Payroll System</h3>
-       </div>
-       <a href="https://github.com/rkoush/payroll-blockchain" target="_blank" rel="noopener noreferrer" class="bg-purple-accent hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition-colors">
-        <i class="fab fa-github mr-2"></i>View Project
-       </a>
-      </div>
-      <p class="text-gray-300 text-sm">
-        Designed a blockchain-backed payroll system using smart contracts to ensure immutability, transparent audit trails, and secure compensation workflows.
-      </p>
-     </div>
-
-    </div>
-   </section>
-
-   <!-- Education -->
-   <section id="education" class="scroll-mt-20">
-    <h2 class="text-3xl font-bold mb-8 text-center">Education</h2>
-    <div class="bg-dark-card rounded-xl p-8 border border-dark-border card-hover mb-6">
-     <div class="flex items-center mb-4">
-      <i class="fas fa-graduation-cap text-purple-accent text-2xl mr-4"></i>
-      <div>
-       <h3 class="text-xl font-semibold">Master of Science in Data Science</h3>
-       <p class="text-purple-accent font-medium">University of Maryland, College Park</p>
-       <p class="text-gray-400 text-sm">Aug 2024 – May 2026 | GPA: 3.95/4.0</p>
-      </div>
-     </div>
-     <p class="text-gray-300 text-sm">
-       Graduate coursework focused on statistical modeling, machine learning, big data, NLP/LLMs, and data engineering, with applied projects in forecasting, graph analytics, and retrieval-augmented systems.
-     </p>
-    </div>
-
-    <div class="bg-dark-card rounded-xl p-8 border border-dark-border card-hover">
-     <div class="flex items-center mb-4">
-      <i class="fas fa-university text-purple-accent text-2xl mr-4"></i>
-      <div>
-       <h3 class="text-xl font-semibold">Bachelor of Technology in Software Engineering</h3>
-       <p class="text-purple-accent font-medium">SRM Institute of Science and Technology</p>
-       <p class="text-gray-400 text-sm">Jul 2017 – Jun 2021</p>
-      </div>
-     </div>
-     <p class="text-gray-300 text-sm">
-       Built foundations in software engineering, algorithms, and systems design. Won a university-wide gold medal at Research Day (2020) for a paper on automation in metal and mineral extraction using image processing.
-     </p>
-    </div>
-   </section>
-
-   <!-- Contact -->
-   <section id="contact" class="scroll-mt-20">
-    <h2 class="text-3xl font-bold mb-8 text-center">Get In Touch</h2>
-    <div class="bg-dark-card rounded-xl p-8 border border-dark-border text-center">
-     <p class="text-gray-300 mb-6">
-       I’m always happy to chat about data science, ML systems, analytics strategy, or potential collaborations.
-       Feel free to reach out if you’d like to work together or just connect.
-     </p>
-     <p class="text-gray-300 mb-4">
-       Email: <a href="mailto:rkoush@umd.edu" class="text-purple-accent hover:underline">rkoush@umd.edu</a><br>
-       Phone: +1 (240) 601-6840<br>
-       LinkedIn: <a href="https://linkedin.com/in/rishi-koushik-s" target="_blank" rel="noopener noreferrer" class="text-purple-accent hover:underline">linkedin.com/in/rishi-koushik-s</a>
-     </p>
-     <div class="flex justify-center space-x-6 mt-4">
-      <a id="contact-email" href="mailto:rkoush@umd.edu" class="bg-purple-accent hover:bg-purple-600 text-white px-6 py-3 rounded-lg transition-colors">
-        <i class="fas fa-envelope mr-2"></i>Send Email
-      </a>
-      <a id="contact-linkedin" href="https://linkedin.com/in/rishi-koushik-s" target="_blank" rel="noopener noreferrer" class="border border-purple-accent text-purple-accent hover:bg-purple-accent hover:text-white px-6 py-3 rounded-lg transition-colors">
-        <i class="fab fa-linkedin mr-2"></i>Connect on LinkedIn
-      </a>
-     </div>
-    </div>
-   </section>
+    </section>
 
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-dark-card border-t border-dark-border py-8 mt-16">
-   <div class="max-w-6xl mx-auto px-6 text-center text-gray-400">
-    <p>© 2025 Rishi Koushik Sridharan</p>
-   </div>
+  <footer class="bg-light-bg border-t border-border-color py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-6 text-center text-text-secondary">
+      <p>© 2025 Rishi Koushik Sridharan. All rights reserved.</p>
+    </div>
   </footer>
 
   <script>
-    // Element SDK Configuration (kept in sync with visible content)
+    // Config with shorter bios preserved
     const defaultConfig = {
-        full_name: "Rishi Koushik Sridharan",
-        subtitle: "Data Scientist | ML Engineer | Analytics Professional",
-        email: "rkoush@umd.edu",
-        linkedin_url: "https://linkedin.com/in/rishi-koushik-s",
-        github_url: "https://github.com/rkoush",
-        phone: "+1 (240) 601-6840",
-        professional_bio: "I am a Data Scientist with 3+ years of experience designing and scaling ML and analytics systems for Fortune 100 clients across supply chain, telecom, and strategy. I’ve built forecasting platforms that unlocked over $3M in annual savings, engineered anomaly-detection systems that reduced false positives by 30%, and designed end-to-end analytical solutions that improved operational efficiency. I’m currently pursuing my M.S. in Data Science at the University of Maryland (GPA 3.95), specializing in statistical modeling, NLP/LLMs, MLOps, and cloud-based data workflows.",
-        personal_bio: "Outside of work, I love exploring new places—hiking scenic trails, relaxing on beaches, and immersing myself in different cultures and cuisines. I value community and enjoy volunteer work, especially when it involves helping people learn new skills or supporting local initiatives. I’m driven by a strong competitive mindset, whether in academics, sports, or creative problem-solving. I’m also a big fan of video games—story-driven titles like Red Dead Redemption 2 and Assassin’s Creed, as well as competitive multiplayer games including Fortnite and Valorant."
+      full_name: "Rishi Koushik Sridharan",
+      subtitle: "Data Scientist | ML Engineer | Analytics Professional",
+      email: "rkoush@umd.edu",
+      linkedin_url: "https://linkedin.com/in/rishi-koushik-s",
+      github_url: "https://github.com/rkoush",
+      phone: "+1 (240) 601-6840",
+      professional_bio: "Data Scientist with 3+ years of experience scaling ML and analytics systems for Fortune 100 clients. My work in forecasting and anomaly detection has generated over $3M in savings and significantly improved operational efficiency. I am currently deepening my expertise in MLOps, LLMs, and cloud workflows through my M.S. in Data Science at the University of Maryland (GPA 3.95).",
+      personal_bio: "Outside of data, I'm an avid explorer, from hiking scenic trails to enjoying new cultures and cuisines. I value community, problem-solving, and a good story—whether that's in a video game, in my volunteer work, or in connecting with new people."
     };
 
     async function onConfigChange(config) {
-        // Update header content
-        document.getElementById('full-name').textContent = config.full_name || defaultConfig.full_name;
-        document.getElementById('subtitle').textContent = config.subtitle || defaultConfig.subtitle;
+      // Update header content
+      document.getElementById('full-name').textContent = config.full_name || defaultConfig.full_name;
+      document.getElementById('subtitle').textContent = config.subtitle || defaultConfig.subtitle;
 
-        // Update contact links
-        const email = config.email || defaultConfig.email;
-        const linkedinUrl = config.linkedin_url || defaultConfig.linkedin_url;
-        const githubUrl = config.github_url || defaultConfig.github_url;
-        const phone = config.phone || defaultConfig.phone;
+      // Update contact links
+      const email = config.email || defaultConfig.email;
+      const linkedinUrl = config.linkedin_url || defaultConfig.linkedin_url;
+      const githubUrl = config.github_url || defaultConfig.github_url;
+      const phone = config.phone || defaultConfig.phone;
 
-        document.getElementById('email-link').href = `mailto:${email}`;
-        document.getElementById('linkedin-link').href = linkedinUrl;
-        document.getElementById('github-link').href = githubUrl;
-        document.getElementById('phone-link').href = `tel:${phone.replace(/\\D/g, '')}`;
+      document.getElementById('email-link').href = `mailto:${email}`;
+      document.getElementById('linkedin-link').href = linkedinUrl;
+      document.getElementById('github-link').href = githubUrl;
+      document.getElementById('phone-link').href = `tel:${phone.replace(/\D/g, '')}`;
 
-        document.getElementById('contact-email').href = `mailto:${email}`;
-        document.getElementById('contact-linkedin').href = linkedinUrl;
+      document.getElementById('contact-email').href = `mailto:${email}`;
+      document.getElementById('contact-linkedin').href = linkedinUrl;
 
-        // Update about section
-        document.getElementById('professional-bio').textContent = config.professional_bio || defaultConfig.professional_bio;
-        document.getElementById('personal-bio').textContent = config.personal_bio || defaultConfig.personal_bio;
+      // Update about section
+      document.getElementById('professional-bio').innerHTML = (config.professional_bio || defaultConfig.professional_bio).replace(/\$3M/g, '<b>$3M</b>').replace(/3\+ years/g, '<b>3+ years</b>').replace(/GPA 3.95/g, '<b>GPA 3.95</b>');
+      document.getElementById('personal-bio').textContent = config.personal_bio || defaultConfig.personal_bio;
     }
 
     function mapToCapabilities(config) {
-        return {
-            recolorables: [],
-            borderables: [],
-            fontEditable: undefined,
-            fontSizeable: undefined
-        };
+      return {
+        recolorables: [],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
     }
 
     function mapToEditPanelValues(config) {
-        return new Map([
-            ["full_name", config.full_name || defaultConfig.full_name],
-            ["subtitle", config.subtitle || defaultConfig.subtitle],
-            ["email", config.email || defaultConfig.email],
-            ["linkedin_url", config.linkedin_url || defaultConfig.linkedin_url],
-            ["github_url", config.github_url || defaultConfig.github_url],
-            ["phone", config.phone || defaultConfig.phone],
-            ["professional_bio", config.professional_bio || defaultConfig.professional_bio],
-            ["personal_bio", config.personal_bio || defaultConfig.personal_bio]
-        ]);
+      return new Map([
+        ["full_name", config.full_name || defaultConfig.full_name],
+        ["subtitle", config.subtitle || defaultConfig.subtitle],
+        ["email", config.email || defaultConfig.email],
+        ["linkedin_url", config.linkedin_url || defaultConfig.linkedin_url],
+        ["github_url", config.github_url || defaultConfig.github_url],
+        ["phone", config.phone || defaultConfig.phone],
+        ["professional_bio", config.professional_bio || defaultConfig.professional_bio],
+        ["personal_bio", config.personal_bio || defaultConfig.personal_bio]
+      ]);
     }
 
     // Initialize Element SDK
     if (window.elementSdk) {
-        window.elementSdk.init({
-            defaultConfig,
-            onConfigChange,
-            mapToCapabilities,
-            mapToEditPanelValues
-        });
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
     }
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
     });
   </script>
- </body>
+</body>
+
 </html>
-
-
-
-
